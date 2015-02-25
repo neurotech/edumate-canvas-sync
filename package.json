@@ -9,6 +9,7 @@
   "author": "Tim Douglas",
   "license": "ISC",
   "dependencies": {
+    "hapi": "^8.2.0",
     "prettyjson": "^1.1.0",
     "request": "^2.53.0"
   }
