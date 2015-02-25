@@ -1,21 +1,20 @@
 var path = require('path');
 var config = {};
 
-var domain = 'YOUR-INSTITUTION.INSTRUCTURE.COM';
+// Canvas Variables
+var domain = 'YOUR-ORGANISATION-HERE.instructure.com';
+var token = 'SECRET';
 
 config.http = {
   host: 'http://localhost',
   port: 3333
 };
 
+// Test
 config.canvas = {
-  token: 'SECRET',
-  url: 'https://' + domain + '/api/v1/accounts/1/sis_imports'
-};
-
-config.requestOptions = {
-  url: config.canvas.url,
-  headers: { 'Authorization': 'Bearer ' + config.canvas.token }
+  auth: { 'Authorization': 'Bearer ' + token },
+  upload: 'https://' + domain + '/api/v1/accounts/self/sis_imports.json?import_type=instructure_csv',
+  uploadStatus: 'https://' + domain + '/api/v1/accounts/self/sis_imports/'
 };
 
 config.db2 = {
