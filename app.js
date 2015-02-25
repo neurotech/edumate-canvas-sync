@@ -1,30 +1,40 @@
-var Hapi = require('hapi');
+var fs = require('fs');
 var request = require('request');
 var prettyjson = require('prettyjson');
 var config = require('./config');
 
-var server = new Hapi.Server();
-server.connection({ port: config.http.port });
+function canvasUpload(dataset) {
+  request.post({
+    url: config.canvas.upload,
+    headers: config.canvas.auth,
+    formData: {attachment: fs.createReadStream(__dirname + '/csv/' + dataset + '.csv')}
+  }, respond);
+};
 
-function callback(error, response, body) {
+function respond(error, response, body) {
   if (!error && response.statusCode == 200) {
     var payload = JSON.parse(body);
-    console.log(prettyjson.render(payload));
+    console.log('Success! Import running. (ID: ' + payload.id + ')');
+    uploadStatus(payload.id);
   } else {
-    console.log(error);
+    console.log('Error: ' + error);
   }
 };
 
-request(config.requestOptions, callback);
+function uploadStatus(id) {
+  request.get({
+      url: config.canvas.uploadStatus + id,
+      headers: config.canvas.auth
+    },
+    function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var status = JSON.parse(body);
+        console.log('Status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
+      } else {
+        console.log('Error: ' + error);
+      }
+    }
+  );
+};
 
-server.route({
-  method: 'GET',
-  path: '/',
-  handler: function (request, reply) {
-    reply('There is nothing here.');
-  }
-});
-
-// server.start(function () {
-//   console.log('Server running at:', server.info.uri);
-// });
+canvasUpload('staff');
