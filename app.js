@@ -3,6 +3,13 @@ var request = require('request');
 var prettyjson = require('prettyjson');
 var config = require('./config');
 
+// Add a way to check the status of the most recent upload before POSTing a CSV.
+// i.e.:
+//   1. GET zeroth object from /api/v1/accounts/self/sis_imports/
+//   2. Check 'workflow_state' for the presence of 'created' / 'importing'
+//   3. If present, wait x seconds, goto step 1.
+//   4. If 'imported' then begin POSTing
+
 function canvasUpload(dataset) {
   request.post({
     url: config.canvas.upload,
