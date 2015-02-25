@@ -1,0 +1,15 @@
+{
+  "name": "edumate-canvas-sync",
+  "version": "1.0.0",
+  "description": "Middleware to link Edumate and Canvas.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tim Douglas",
+  "license": "ISC",
+  "dependencies": {
+    "prettyjson": "^1.1.0",
+    "request": "^2.53.0"
+  }
+}
