@@ -16,7 +16,7 @@ config.canvas = {
 config.requestOptions = {
   url: config.canvas.url,
   headers: { 'Authorization': 'Bearer ' + config.canvas.token }
-}
+};
 
 config.db2 = {
   host: 'HOSTNAME',
