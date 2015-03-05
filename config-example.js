@@ -10,7 +10,6 @@ config.http = {
   port: 3333
 };
 
-// Test
 config.canvas = {
   auth: { 'Authorization': 'Bearer ' + token },
   upload: 'https://' + domain + '/api/v1/accounts/self/sis_imports.json?import_type=instructure_csv',
