@@ -1,7 +1,12 @@
 var fs = require('fs');
 var request = require('request');
-var prettyjson = require('prettyjson');
+var schedule = require('node-schedule');
+var moment = require('moment');
 var config = require('./config');
+
+schedule.scheduleJob(config.uploadSchedules.test, function(){
+  console.log('Running staff upload at: ' + moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
+});
 
 // Add a way to check the status of the most recent upload before POSTing a CSV.
 // i.e.:
@@ -16,17 +21,17 @@ function canvasUpload(dataset) {
     headers: config.canvas.auth,
     formData: {attachment: fs.createReadStream(__dirname + '/csv/' + dataset + '.csv')}
   }, respond);
-};
+}
 
 function respond(error, response, body) {
-  if (!error && response.statusCode == 200) {
+  if (!error && response.statusCode === 200) {
     var payload = JSON.parse(body);
     console.log('Success! Import running. (ID: ' + payload.id + ')');
     uploadStatus(payload.id);
   } else {
     console.log('Error: ' + error);
   }
-};
+}
 
 function uploadStatus(id) {
   request.get({
@@ -34,7 +39,7 @@ function uploadStatus(id) {
       headers: config.canvas.auth
     },
     function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+      if (!error && response.statusCode === 200) {
         var status = JSON.parse(body);
         console.log('Status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
       } else {
@@ -42,6 +47,8 @@ function uploadStatus(id) {
       }
     }
   );
-};
+}
 
+/*
 canvasUpload('staff');
+*/
