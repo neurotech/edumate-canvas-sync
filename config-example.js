@@ -1,8 +1,9 @@
 var path = require('path');
+var schedule = require('node-schedule');
 var config = {};
 
 // Canvas Variables
-var domain = 'YOUR-ORGANISATION-HERE.instructure.com';
+var domain = 'ORGANISATION.instructure.com';
 var token = 'SECRET';
 
 config.http = {
@@ -16,11 +17,15 @@ config.canvas = {
   uploadStatus: 'https://' + domain + '/api/v1/accounts/self/sis_imports/'
 };
 
+config.uploadSchedules = {
+  example: { minute: [new schedule.Range(0,59)] }
+};
+
 config.db2 = {
-  host: 'HOSTNAME',
-  port: 'PORT',
-  suffix: '/SUFFIX',
-  username: 'USERNAME',
+  host: 'HOST',
+  port: '12345',
+  suffix: '/PATH',
+  username: 'username',
   password: 'SECRET'
 };
 
