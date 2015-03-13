@@ -39,10 +39,44 @@ function uploadStatus() {
       headers: config.canvas.auth
     },
     function(error, response, body) {
+      var payload = JSON.parse(body);
+      var status = payload.sis_imports[0];
+
+      switch(status.workflow_state) {
+        case 'created':
+        case 'importing':
+          checkImport(status.id);
+          break;
+
+        case 'imported':
+          console.log('Latest SIS upload completed successfully on ' + moment(status.ended_at).format('dddd, MMMM Do YYYY [at] h:mm:ss a.'));
+          break;
+
+        case 'imported_with_messages':
+          console.log('Latest SIS upload completed with the following messages:' + '\n' + 'Processing warnings: ' + status.processing_warnings[1] + '\n' + 'Processing errors: ' + status.processing_errors[1]);
+          break;
+
+        case 'failed':
+          console.log('Latest SIS upload failed on ' + moment(status.ended_at).format('dddd, MMMM Do YYYY [at] h:mm:ss a.'));
+          break;
+
+        case 'failed_with_messages':
+          console.log('Latest SIS upload failed on ' + moment(status.ended_at).format('dddd, MMMM Do YYYY [at] h:mm:ss a.') + ' with the following message:' + '\n' + status.processing_errors[1]);
+          break;
+      }
+    }
+  );
+}
+
+function checkImport(id) {
+  request.get({
+      url: config.canvas.uploadStatus + id,
+      headers: config.canvas.auth
+    },
+    function(error, response, body) {
       if (!error && response.statusCode === 200) {
-        var status = JSON.parse(body[0]);
-        console.log(status.id);
-        //console.log('Status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
+        var status = JSON.parse(body);
+        console.log('Current SIS import (' + id + ') status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
       } else {
         console.log('Error: ' + error);
       }
@@ -51,22 +85,6 @@ function uploadStatus() {
 }
 
 uploadStatus();
-
-// function checkUpload(id) {
-//   request.get({
-//       url: config.canvas.uploadStatus + id,
-//       headers: config.canvas.auth
-//     },
-//     function(error, response, body) {
-//       if (!error && response.statusCode === 200) {
-//         var status = JSON.parse(body);
-//         console.log('Status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
-//       } else {
-//         console.log('Error: ' + error);
-//       }
-//     }
-//   );
-// }
 
 /*
 canvasUpload('staff');
