@@ -4,9 +4,9 @@ var schedule = require('node-schedule');
 var moment = require('moment');
 var config = require('./config');
 
-schedule.scheduleJob(config.uploadSchedules.test, function(){
-  console.log('Running staff upload at: ' + moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
-});
+// schedule.scheduleJob(config.uploadSchedules.test, function(){
+//   console.log('Running staff upload at: ' + moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
+// });
 
 // Add a way to check the status of the most recent upload before POSTing a CSV.
 // i.e.:
@@ -19,7 +19,7 @@ function canvasUpload(dataset) {
   request.post({
     url: config.canvas.upload,
     headers: config.canvas.auth,
-    formData: {attachment: fs.createReadStream(__dirname + '/csv/' + dataset + '.csv')}
+    formData: { attachment: fs.createReadStream(__dirname + '/csv/' + dataset + '.csv') }
   }, respond);
 }
 
@@ -33,21 +33,40 @@ function respond(error, response, body) {
   }
 }
 
-function uploadStatus(id) {
+function uploadStatus() {
   request.get({
-      url: config.canvas.uploadStatus + id,
+      url: config.canvas.uploadStatus,
       headers: config.canvas.auth
     },
     function(error, response, body) {
       if (!error && response.statusCode === 200) {
-        var status = JSON.parse(body);
-        console.log('Status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
+        var status = JSON.parse(body[0]);
+        console.log(status.id);
+        //console.log('Status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
       } else {
         console.log('Error: ' + error);
       }
     }
   );
 }
+
+uploadStatus();
+
+// function checkUpload(id) {
+//   request.get({
+//       url: config.canvas.uploadStatus + id,
+//       headers: config.canvas.auth
+//     },
+//     function(error, response, body) {
+//       if (!error && response.statusCode === 200) {
+//         var status = JSON.parse(body);
+//         console.log('Status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
+//       } else {
+//         console.log('Error: ' + error);
+//       }
+//     }
+//   );
+// }
 
 /*
 canvasUpload('staff');
