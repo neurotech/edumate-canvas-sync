@@ -8,26 +8,33 @@ var config = require('./config');
 //   console.log('Running staff upload at: ' + moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 // });
 
-// Add a way to check the status of the most recent upload before POSTing a CSV.
-// i.e.:
-//   1. GET zeroth object from /api/v1/accounts/self/sis_imports/
-//   2. Check 'workflow_state' for the presence of 'created' / 'importing'
-//   3. If present, wait x seconds, goto step 1.
-//   4. If 'imported' then begin POSTing
-
 function canvasUpload(dataset) {
-  request.post({
-    url: config.canvas.upload,
-    headers: config.canvas.auth,
-    formData: { attachment: fs.createReadStream(__dirname + '/csv/' + dataset + '.csv') }
-  }, respond);
+  request.get({
+      url: config.canvas.uploadStatus,
+      headers: config.canvas.auth
+    },
+    function(error, response, body) {
+      var payload = JSON.parse(body);
+      var status = payload.sis_imports[0];
+
+      if (status.workflow_state !== 'importing') {
+        request.post({
+          url: config.canvas.upload,
+          headers: config.canvas.auth,
+          formData: { attachment: fs.createReadStream(__dirname + '/csv/' + dataset + '.csv') }
+        }, respond);
+      } else {
+        uploadStatus();
+      }
+    }
+  );
 }
 
 function respond(error, response, body) {
   if (!error && response.statusCode === 200) {
     var payload = JSON.parse(body);
     console.log('Success! Import running. (ID: ' + payload.id + ')');
-    uploadStatus(payload.id);
+    uploadStatus();
   } else {
     console.log('Error: ' + error);
   }
@@ -76,7 +83,25 @@ function checkImport(id) {
     function(error, response, body) {
       if (!error && response.statusCode === 200) {
         var status = JSON.parse(body);
-        console.log('Current SIS import (' + id + ') status: ' + status.workflow_state + ' | Progress: ' + status.progress + '%');
+        if (status.workflow_state === 'created' || status.workflow_state === 'importing') {
+          var check = setInterval(function() {
+            request.get({
+              url: config.canvas.uploadStatus + status.id,
+              headers: config.canvas.auth
+            },
+            function(error, response, body) {
+              var progress = JSON.parse(body);
+              if (progress.workflow_state === 'created' || progress.workflow_state === 'importing') {
+                console.log('Current SIS import (' + id + ') status: ' + progress.workflow_state + ' | Progress: ' + progress.progress + '%');
+              } else {
+                clearInterval(check);
+                uploadStatus();
+              }
+            });
+          }, 1000);
+        } else {
+          uploadStatus();
+        }
       } else {
         console.log('Error: ' + error);
       }
@@ -84,8 +109,4 @@ function checkImport(id) {
   );
 }
 
-uploadStatus();
-
-/*
 canvasUpload('staff');
-*/
