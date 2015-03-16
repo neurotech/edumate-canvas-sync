@@ -13,19 +13,23 @@ config.http = {
 
 config.canvas = {
   auth: { 'Authorization': 'Bearer ' + token },
-  upload: 'https://' + domain + '/api/v1/accounts/self/sis_imports.json?import_type=instructure_csv',
-  uploadStatus: 'https://' + domain + '/api/v1/accounts/self/sis_imports/'
+  sisPost: 'https://' + domain + '/api/v1/accounts/self/sis_imports.json?import_type=instructure_csv',
+  sisGet: 'https://' + domain + '/api/v1/accounts/self/sis_imports/'
 };
 
 config.uploadSchedules = {
-  example: { minute: [new schedule.Range(0,59)] }
+  test: { minute: [new schedule.Range(0,59)] },
+  staff: { hour: 10, minute: 0, dayOfWeek: [new schedule.Range(1,5)] },
+  courses: { hour: 11, minute: 30, dayOfWeek: [new schedule.Range(1,5)] },
+  enrolments: { hour: [new schedule.Range(8,18)], minute: 0, dayOfWeek: [new schedule.Range(1,5)] },
+  accounts: { hour: 9, minute: 0, dayOfWeek: 5 }
 };
 
 config.db2 = {
   host: 'HOST',
-  port: '12345',
+  port: 'PORT',
   suffix: '/PATH',
-  username: 'username',
+  username: 'USERNAME',
   password: 'SECRET'
 };
 
