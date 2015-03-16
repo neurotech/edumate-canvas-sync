@@ -1,15 +1,21 @@
 {
   "name": "edumate-canvas-sync",
   "version": "1.0.0",
+  "private": true,
   "description": "Middleware to link Edumate and Canvas.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neurotech/edumate-canvas-sync.git"
+  },
   "author": "Tim Douglas",
   "license": "ISC",
   "dependencies": {
     "acho": "^1.0.1",
+    "axios": "^0.5.2",
     "hapi": "^8.2.0",
     "moment": "^2.9.0",
     "node-schedule": "^0.2.3",
