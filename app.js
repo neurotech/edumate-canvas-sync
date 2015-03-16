@@ -4,8 +4,8 @@ var moment = require('moment');
 var config = require('./config');
 var canvas = require('./lib/canvas');
 
-//canvas.sisUpload('staff');
-canvas.sisStatus();
+canvas.sisUpload('staff');
+//canvas.sisStatus();
 
 
 // schedule.scheduleJob(config.uploadSchedules.test, function(){
