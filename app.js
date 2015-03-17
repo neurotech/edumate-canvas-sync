@@ -8,6 +8,7 @@ var canvas = require('./lib/canvas');
 //canvas.sisUpload('staff');
 canvas.sisStatus();
 
+// To be cleaned up:
 
 // schedule.scheduleJob(config.uploadSchedules.test, function(){
 //   console.log('Running staff upload at: ' + moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
