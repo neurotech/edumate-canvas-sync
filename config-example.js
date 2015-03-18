@@ -13,8 +13,12 @@ config.http = {
 
 config.canvas = {
   auth: { 'Authorization': 'Bearer ' + token },
-  sisPost: 'https://' + domain + '/api/v1/accounts/self/sis_imports.json?import_type=instructure_csv',
-  sisGet: 'https://' + domain + '/api/v1/accounts/self/sis_imports/'
+  api: {
+    sis: {
+      get: 'https://' + domain + '/api/v1/accounts/self/sis_imports/',
+      post: 'https://' + domain + '/api/v1/accounts/self/sis_imports.json?import_type=instructure_csv'
+    }
+  }
 };
 
 config.uploadSchedules = {
