@@ -19,7 +19,7 @@ config.canvas = {
 
 config.uploadSchedules = {
   test: { minute: [new schedule.Range(0,59)] },
-  staff: { hour: 10, minute: 0, dayOfWeek: [new schedule.Range(1,5)] },
+  staff: { hour: 10, minute: 0, dayOfWeek: 4 },
   courses: { hour: 11, minute: 30, dayOfWeek: [new schedule.Range(1,5)] },
   enrolments: { hour: [new schedule.Range(8,18)], minute: 0, dayOfWeek: [new schedule.Range(1,5)] },
   accounts: { hour: 9, minute: 0, dayOfWeek: 5 }
