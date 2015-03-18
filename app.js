@@ -1,10 +1,6 @@
 var program = require('commander');
-var fs = require('fs');
-var request = require('request');
 var schedule = require('node-schedule');
 var moment = require('moment');
-
-var config = require('./config');
 var canvas = require('./lib/canvas');
  
 program
