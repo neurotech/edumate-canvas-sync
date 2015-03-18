@@ -2,7 +2,7 @@ var program = require('commander');
 var schedule = require('node-schedule');
 var moment = require('moment');
 var canvas = require('./lib/canvas');
- 
+
 program
   .command('upload [csv]')
   .description('Upload CSV as new SIS Import job.')
