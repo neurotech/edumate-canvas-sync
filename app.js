@@ -14,7 +14,7 @@ program
   .command('status')
   .description('Check Canvas SIS Import status.')
   .action(function(){
-    canvas.sisStatusPromise()
+    canvas.sisStatus()
       .then(function(data) {
         console.log(data);
       }, function(error) {
