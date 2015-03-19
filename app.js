@@ -1,7 +1,10 @@
 var program = require('commander');
+var Acho = require('acho');
 var schedule = require('node-schedule');
 var moment = require('moment');
 var canvas = require('./lib/canvas');
+
+var acho = new Acho({color: true});
 
 program
   .command('upload [csv]')
@@ -18,7 +21,7 @@ program
       .then(function(data) {
         console.log(data);
       }, function(error) {
-        console.error(error);
+        acho.error(error);
     });
   });
 
