@@ -1,3 +1,5 @@
+'use strict';
+
 var program = require('commander');
 var Acho = require('acho');
 var schedule = require('node-schedule');
@@ -13,9 +15,7 @@ program
   .description('Start the hapi server.')
   .action(function(){
     server.start(function (err) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       console.log('hapi server started');
     });
 });
