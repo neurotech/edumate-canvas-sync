@@ -14,7 +14,12 @@ program
   .command('status')
   .description('Check Canvas SIS Import status.')
   .action(function(){
-    canvas.sisStatus();
+    canvas.sisStatusPromise()
+      .then(function(data) {
+        console.log(data);
+      }, function(error) {
+        console.error(error);
+    });
   });
 
 program.parse(process.argv);
