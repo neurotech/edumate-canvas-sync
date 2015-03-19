@@ -10,7 +10,13 @@ program
   .command('upload [csv]')
   .description('Upload CSV as new SIS Import job.')
   .action(function(csv){
-    canvas.sisUpload(csv);
+    canvas.sisUpload(csv)
+      .then(function(data) {
+        acho.success(data.csv + '.csv uploaded.');
+        acho.success('Import ID #' + data.canvas.id + ' started ' + moment(data.canvas.created_at).format("dddd, MMMM Do YYYY [at] hh:mm:ss A."));
+      }, function(error) {
+        acho.error(error);
+    });
   });
 
 program
