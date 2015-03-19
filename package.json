@@ -16,6 +16,8 @@
   "dependencies": {
     "acho": "^1.0.1",
     "commander": "^2.7.1",
+    "hapi": "^8.4.0",
+    "hapi-routes-status": "^2.0.1",
     "moment": "^2.9.0",
     "node-schedule": "^0.2.3",
     "request": "^2.53.0"
