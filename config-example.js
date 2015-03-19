@@ -7,8 +7,8 @@ var domain = 'ORGANISATION.instructure.com';
 var token = 'SECRET';
 
 config.http = {
-  host: 'http://localhost',
-  port: 3333
+  host: 'localhost',
+  port: 3000
 };
 
 config.canvas = {
