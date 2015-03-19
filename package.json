@@ -16,6 +16,7 @@
   "dependencies": {
     "acho": "^1.0.1",
     "commander": "^2.7.1",
+    "handlebars": "^3.0.0",
     "hapi": "^8.4.0",
     "hapi-routes-status": "^2.0.1",
     "moment": "^2.9.0",
