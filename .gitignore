@@ -2,7 +2,7 @@ node_modules
 npm-debug.log
 bower_components
 db
-public
+build
 config.js
 .DS_Store
 *.swp
