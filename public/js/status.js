@@ -3,7 +3,7 @@ var timestamp = 'dddd, MMMM Do YYYY [-] hh:mm A.';
 $("#refresh-sis-status").on("click", function() {
   $("#job, #created, #progress").text('Loading...');
   $.ajax({
-    url: "http://localhost:3000/sis-status/json",
+    url: "/sis-status/json",
     dataType : "json",
     success: function(json) {
       $("#job").text(json.id);
