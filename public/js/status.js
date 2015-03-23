@@ -1,7 +1,7 @@
 var timestamp = 'dddd, MMMM Do YYYY [-] hh:mm A';
 
 function sisStatus(){
-  var sisApi = $.ajax({url: "/sis-status/json", dataType : "json"});
+  var sisApi = $.ajax({url: "/canvas/sis/json", dataType : "json"});
   var $sisElements = $("#job, #created, #progress");
   var $job = $("#job");
   var $created = $("#created");
