@@ -1,48 +1,12 @@
 'use strict';
 
-var program = require('commander');
-var Acho = require('acho');
 var schedule = require('node-schedule');
 var moment = require('moment');
-var canvas = require('./lib/canvas');
-var server = require('./lib/hapi');
 
-var acho = new Acho({color: true});
+var program = require('./lib/cli');
+var db = require('./lib/edumate');
 
-// Command line support
-program
-  .command('serve')
-  .description('Start the hapi server.')
-  .action(function(){
-    server.start(function (err) {
-      if (err) { throw err; }
-      console.log('hapi server started');
-    });
-});
-
-program
-  .command('upload [csv]')
-  .description('Upload CSV as new SIS Import job.')
-  .action(function(csv){
-    canvas.sisUpload(csv)
-      .then(function(data) {
-        acho.success(data.status);
-      }, function(error) {
-        acho.error(error);
-      });
-});
-
-program
-  .command('status')
-  .description('Check latest Canvas SIS Import status.')
-  .action(function(){
-    canvas.sisStatus()
-      .then(function(data) {
-        console.log(data);
-      }, function(error) {
-        acho.error(error);
-    });
-});
+db.init();
 
 program.parse(process.argv);
 
