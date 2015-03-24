@@ -28,7 +28,7 @@ config.canvas = {
   }
 };
 
-config.db2 = {
+config.edumate = {
   host: 'HOST',
   port: 'PORT',
   suffix: '/PATH',
@@ -39,7 +39,7 @@ config.db2 = {
 config.init = {
   libpath: './drivers/db2jcc.jar',
   drivername: 'com.ibm.db2.jcc.DB2Driver',
-  url: 'jdbc:' + 'db2://' + config.db2.host + ':' + config.db2.port + config.db2.suffix + ':user=' + config.db2.username + ';password=' + config.db2.password + ';'
+  url: 'jdbc:' + 'db2://' + config.edumate.host + ':' + config.edumate.port + config.edumate.suffix + ':user=' + config.edumate.username + ';password=' + config.edumate.password + ';'
 };
 
 config.cache = {
