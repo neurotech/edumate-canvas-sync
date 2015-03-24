@@ -4,9 +4,7 @@ var schedule = require('node-schedule');
 var moment = require('moment');
 
 var program = require('./lib/cli');
-var db = require('./lib/edumate');
-
-db.init();
+var edumate = require('./lib/edumate');
 
 program.parse(process.argv);
 
