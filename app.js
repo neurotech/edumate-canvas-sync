@@ -8,12 +8,22 @@ var program = require('./lib/cli');
 var edumate = require('./lib/db/edumate');
 var acho = new Acho({color: true});
 
-/*
-edumate.query('staff', 'SELECT * FROM DB2INST1.view_canvas_staff_users ORDER BY login_id')
+
+edumate.query('terms', 'SELECT * FROM DB2INST1.VIEW_CANVAS_TERMS', 'csv')
   .then(function(res) {
-    acho.info(res);
+    acho.success(res);
+    // next query
+    setTimeout(function() {
+      edumate.query('terms', 'SELECT * FROM DB2INST1.VIEW_CANVAS_TERMS', 'cache')
+        .then(function(res) {
+          acho.success(res);
+        }, function(err) {
+          acho.error(err);
+        });
+    }, 1500);
+  }, function(err) {
+    acho.error(err);
   });
-*/
 
 program.parse(process.argv);
 
