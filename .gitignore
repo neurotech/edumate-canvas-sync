@@ -5,6 +5,5 @@ build
 config.js
 .DS_Store
 *.swp
-csv/*.csv
+*.csv
 cache
-db
