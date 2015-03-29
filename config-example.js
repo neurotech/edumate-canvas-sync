@@ -42,10 +42,14 @@ config.init = {
   url: 'jdbc:' + 'db2://' + config.edumate.host + ':' + config.edumate.port + config.edumate.suffix + ':user=' + config.edumate.username + ';password=' + config.edumate.password + ';'
 };
 
+config.csv = {
+  path: path.join(__dirname, '/csv/')
+};
+
 config.cache = {
   value: 5,
   units: 'minutes',
-  path: path.join(__dirname, '/db/')
+  path: path.join(__dirname, '/cache/')
 };
 
 module.exports = config;
