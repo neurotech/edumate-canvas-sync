@@ -6,9 +6,10 @@ var Acho = require('acho');
 
 var program = require('./lib/cli');
 var edumate = require('./lib/db/edumate');
+var datasets = require('./datasets');
 var acho = new Acho({color: true});
 
-edumate.query('network-traffic', 'SELECT * FROM DB2INST1.NETWORK_TRAFFIC', 'csv');
+edumate.query(datasets.terms.name, datasets.terms.sql);
 
 // edumate.query('terms', 'SELECT * FROM DB2INST1.VIEW_CANVAS_TERMS', 'csv')
 //   .then(function(res) {
