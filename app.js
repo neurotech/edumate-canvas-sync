@@ -1,22 +1,28 @@
+require('newrelic');
+
 'use strict';
 
-var schedule = require('node-schedule');
-var moment = require('moment');
 var Acho = require('acho');
 
-var program = require('./lib/cli');
-var edumate = require('./lib/db/edumate');
+var config = require('./config');
 var datasets = require('./datasets');
-var acho = new Acho({color: true});
+var program = require('./lib/cli');
+var timetable = require('./lib/timetable');
+var server = require('./lib/hapi');
 
-edumate.query(datasets.terms.name, datasets.terms.sql);
+var acho = new Acho({color: true});
 
 program.parse(process.argv);
 
-/*
-node-schedule:
---------------
-schedule.scheduleJob(config.uploadSchedules.test, function(){
-  console.log('Running staff upload at: ' + moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
+timetable.job(datasets.terms.name, datasets.terms.sql, datasets.terms.schedule);
+timetable.job(datasets.courses.name, datasets.courses.sql, datasets.courses.schedule);
+timetable.job(datasets.staffUsers.name, datasets.staffUsers.sql, datasets.staffUsers.schedule);
+timetable.job(datasets.studentUsers.name, datasets.studentUsers.sql, datasets.studentUsers.schedule);
+timetable.job(datasets.classTeachers.name, datasets.classTeachers.sql, datasets.classTeachers.schedule);
+timetable.job(datasets.classStudents.name, datasets.classStudents.sql, datasets.classStudents.schedule);
+
+server.start(function (err) {
+  if (err) { throw err; } else {
+    acho.success('hapi running on: http://' + config.http.host + ':' + config.http.port);
+  }
 });
-*/
