@@ -6,13 +6,10 @@ var Acho = require('acho');
 
 var config = require('./config');
 var datasets = require('./datasets');
-var program = require('./lib/cli');
 var timetable = require('./lib/timetable');
 var server = require('./lib/hapi');
 
 var acho = new Acho({color: true});
-
-program.parse(process.argv);
 
 timetable.job(datasets.terms.name, datasets.terms.sql, datasets.terms.schedule);
 timetable.job(datasets.courses.name, datasets.courses.sql, datasets.courses.schedule);
