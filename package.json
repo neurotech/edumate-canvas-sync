@@ -23,6 +23,7 @@
     "jdbc": "0.0.13",
     "lodash": "^3.6.0",
     "moment": "^2.9.0",
+    "newrelic": "^1.18.0",
     "node-schedule": "^0.2.3",
     "request": "^2.53.0"
   }

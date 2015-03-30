@@ -6,3 +6,4 @@ config.js
 *.swp
 *.csv
 cache
+newrelic*.*
