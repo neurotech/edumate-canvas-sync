@@ -14,14 +14,14 @@
   "author": "Tim Douglas",
   "license": "ISC",
   "dependencies": {
-    "acho": "^1.0.1",
-    "camel-case": "^1.1.1",
-    "csv": "^0.4.1",
-    "jdbc": "0.0.13",
-    "lodash": "^3.6.0",
-    "moment": "^2.9.0",
-    "node-edumate": "^2.0.1",
-    "node-schedule": "^0.2.6",
-    "request": "^2.53.0"
+    "acho": "^1.0.66",
+    "canvas-api": "^1.0.1",
+    "csv": "^0.4.5",
+    "moment": "^2.10.3",
+    "node-edumate": "^3.0.0",
+    "node-schedule": "^0.2.9"
+  },
+  "devDependencies": {
+    "tape": "^4.0.1"
   }
 }
