@@ -20,7 +20,7 @@ config.edumate = {
 
 /* jdbc Initialisation Object */
 config.init = {
-  libpath: path.join(__dirname, '/drivers/db2jcc.jar'),
+  libpath: path.join(__dirname, '/node_modules/node-edumate/drivers/db2jcc.jar'),
   drivername: 'com.ibm.db2.jcc.DB2Driver',
   url: 'jdbc:' + 'db2://' + config.edumate.host + ':' + config.edumate.port + config.edumate.suffix + ':user=' + config.edumate.username + ';password=' + config.edumate.password + ';'
 };
