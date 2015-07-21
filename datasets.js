@@ -6,7 +6,8 @@ var datasets = {};
 datasets.subAccounts = {
   name: 'sub-accounts',
   sql: 'SELECT * FROM DB2INST1.view_canvas_subaccounts',
-  schedule: { hour: 18, minute: 0, dayOfWeek: 1 }
+  //schedule: { hour: 18, minute: 0, dayOfWeek: 1 }
+  schedule: { minute: [new schedule.Range(0,59)] }
 };
 
 datasets.terms = {
