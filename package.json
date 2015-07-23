@@ -15,7 +15,7 @@
   "author": "Tim Douglas",
   "license": "ISC",
   "dependencies": {
-    "canvas-api": "^1.0.2",
+    "canvas-api": "^1.0.3",
     "csv": "^0.4.5",
     "moment": "^2.10.3",
     "node-edumate": "^3.0.0",

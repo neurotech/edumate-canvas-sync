@@ -11,7 +11,7 @@ for (var key in datasets) {
 
     timetable.job(datasets[key])
       .then(function (results) {
-        console.log('SIS Import ID #' + results.id + ' started on ' + moment(results.created_at).format('dddd, MMMM Do YYYY [at] hh:mm:ss A. ') + '[' + process.env.CANVAS_API_DOMAIN + ']');
+        console.log('[' + results.dataset + '.csv] ' + 'SIS Import ID #' + results.id + ' started on ' + moment(results.created_at).format('dddd, MMMM Do YYYY [at] hh:mm:ss A. ') + '[' + process.env.CANVAS_API_DOMAIN + ']');
       }, function (error) {
         console.error(error);
       });
