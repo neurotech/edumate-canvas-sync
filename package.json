@@ -2,7 +2,7 @@
   "name": "edumate-canvas-sync",
   "version": "1.0.0",
   "private": true,
-  "description": "Middleware to link Edumate and Canvas.",
+  "description": "node-powered middleware that serves to link Edumate with Canvas.",
   "main": "app.js",
   "scripts": {
     "production": "pm2 start app.js -i 0 --name 'edumate-canvas-sync'",
