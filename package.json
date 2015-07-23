@@ -5,6 +5,7 @@
   "description": "Middleware to link Edumate and Canvas.",
   "main": "app.js",
   "scripts": {
+    "production": "pm2 start app.js -i 0 --name 'edumate-canvas-sync'",
     "setup": "echo 'Creating /csv' && mkdir csv",
     "test": "tap-prettify tests/*.js"
   },
