@@ -10,7 +10,7 @@
 
  - Docs
  - Wiki
- - Better logging
- - Some sort of 'status/logs' endpoint/front-end
  - Error reporting via email
  - Commit SQL statements that formed the VIEWs that `datasets.js` references to repo
+ - ~~Better logging~~
+ - ~~Some sort of 'status/logs' endpoint/front-end~~
