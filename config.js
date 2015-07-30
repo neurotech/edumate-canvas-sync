@@ -3,6 +3,12 @@
 var path = require('path');
 var config = {};
 
+/* Status log endpoint Credentials */
+config.status = {
+  host: process.env.EDUMATE_CANVAS_SYNC_HOST,
+  port: process.env.EDUMATE_CANVAS_SYNC_PORT
+};
+
 /* Canvas Credentials */
 config.canvas = {
   key: process.env.CANVAS_API_KEY,
