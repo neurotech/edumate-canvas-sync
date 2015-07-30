@@ -6,3 +6,4 @@ bower_components
 *.csv
 cache
 newrelic*.*
+db/status.db
