@@ -1,7 +1,5 @@
 'use strict';
 
-require('dotenv').load();
-
 var chalk = require('chalk');
 var moment = require('moment');
 
