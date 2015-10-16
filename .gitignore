@@ -1,9 +1,8 @@
 node_modules
 npm-debug.log
-bower_components
 .DS_Store
 *.swp
 *.csv
 cache
-newrelic*.*
 db/*.db
+.env

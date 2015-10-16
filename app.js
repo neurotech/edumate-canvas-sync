@@ -24,5 +24,3 @@ for (var key in datasets) {
       });
   }
 }
-
-
