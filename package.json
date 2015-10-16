@@ -5,8 +5,9 @@
   "description": "node-powered middleware that serves to link Edumate with Canvas.",
   "main": "app.js",
   "scripts": {
-    "production": "pm2 start app.js -i 0 --max-memory-restart 400M --name 'edumate-canvas-sync'",
     "setup": "echo 'Creating /csv' && mkdir csv",
+    "docker-build": "docker build -t edumate-canvas-sync .",
+    "docker-run": "docker run -d --restart=on-failure:5 --memory \"300M\" -v ~/.env/edumate-canvas-sync_DEVELOPMENT.env:/src/.env --name edumate-canvas-sync edumate-canvas-sync",
     "test": "tap-prettify tests/*.js"
   },
   "repository": {
