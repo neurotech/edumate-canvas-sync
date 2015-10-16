@@ -1,4 +1,4 @@
-FROM nodesource/wheezy:4.2.1
+FROM nodesource/wheezy:4.2.0
 MAINTAINER Tim Douglas <neurotech@gmail.com>
 
 # Set timezone
