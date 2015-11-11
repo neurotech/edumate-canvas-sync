@@ -7,7 +7,7 @@
   "scripts": {
     "setup": "echo 'Creating /csv' && mkdir csv",
     "docker-build": "docker build -t edumate-canvas-sync .",
-    "docker-run": "docker run -d -p 5544:5544 --restart=on-failure:5 --memory \"300M\" --env-file ~/.env/edumate-canvas-sync_PRODUCTION.env --name edumate-canvas-sync neurotech/edumate-canvas-sync",
+    "docker-run": "docker run -d --link rosebank-logger:rosebank-logger --restart=on-failure:5 --memory \"250M\" --env-file ~/.env/edumate-canvas-sync_PRODUCTION.env --name edumate-canvas-sync edumate-canvas-sync",
     "test": "tap-prettify tests/*.js"
   },
   "repository": {
@@ -17,14 +17,15 @@
   "author": "Tim Douglas",
   "license": "ISC",
   "dependencies": {
+    "async": "1.5.0",
+    "bunyan": "1.5.1",
     "canvas-api": "1.0.3",
     "chalk": "1.1.1",
     "csv": "0.4.6",
-    "hapi": "10.4.1",
     "moment": "2.10.6",
-    "nedb": "1.2.1",
     "node-edumate": "4.0.0",
-    "node-schedule": "0.2.9"
+    "node-schedule": "0.2.9",
+    "rosebank-tally": "1.5.1"
   },
   "devDependencies": {
     "tap-prettify": "0.0.2",

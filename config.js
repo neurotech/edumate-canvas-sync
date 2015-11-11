@@ -1,6 +1,9 @@
 'use strict';
 
 var path = require('path');
+var bunyan = require('bunyan');
+var Tally = require('rosebank-tally').Tally;
+
 var config = {};
 
 /* Status log endpoint Credentials */
@@ -23,5 +26,18 @@ config.edumate = {
   username: process.env.EDUMATE_USERNAME,
   password: process.env.EDUMATE_PASSWORD
 };
+
+/* rosebank-logger */
+config.logger = bunyan.createLogger(
+  {
+    name: 'edumate-canvas-sync',
+    streams: [
+      {
+        type: 'raw',
+        stream: new Tally()
+      }
+    ]
+  }
+);
 
 module.exports = config;
