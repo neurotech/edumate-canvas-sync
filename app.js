@@ -33,7 +33,7 @@ function(err, results) {
 
       timetable.job(datasets[key])
         .then(function (results) {}, function (error) {
-          console.error(error);
+          logger.error(error);
         });
     }
   }
