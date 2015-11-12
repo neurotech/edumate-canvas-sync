@@ -7,7 +7,7 @@
   "scripts": {
     "setup": "echo 'Creating /csv' && mkdir csv",
     "docker-build": "docker build -t edumate-canvas-sync .",
-    "docker-run": "docker run -d --link rosebank-logger:rosebank-logger --restart=on-failure:5 --memory \"250M\" --env-file ~/.env/edumate-canvas-sync_PRODUCTION.env --name edumate-canvas-sync edumate-canvas-sync",
+    "docker-run": "docker run -d --net=rosebank --restart=on-failure:5 --memory \"250M\" --env-file ~/.env/edumate-canvas-sync_PRODUCTION.env --name edumate-canvas-sync edumate-canvas-sync",
     "test": "tap-prettify tests/*.js"
   },
   "repository": {
