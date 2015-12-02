@@ -50,7 +50,12 @@ function (err, results) {
   // Iterate over datasets and pass each one to timetable
   for (var key in datasets) {
     if (datasets.hasOwnProperty(key)) {
-      logger.info('Scheduled job: ' + datasets[key].dataset);
+      logger.info({
+        operation: 'Scheduled Job',
+        detail: {
+          message: datasets[key].dataset
+        }
+      });
 
       timetable.job(datasets[key])
         .then(function (results) {}, function (error) {
