@@ -9,8 +9,7 @@
 ## TODO
 
  - Docs
- - Wiki
- - Error reporting via email
  - Commit SQL statements that formed the VIEWs that `datasets.js` references to repo
+ - ~~Error reporting via email~~
  - ~~Better logging~~
  - ~~Some sort of 'status/logs' endpoint/front-end~~
