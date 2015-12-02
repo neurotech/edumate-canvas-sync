@@ -70,3 +70,14 @@ function (err, results) {
     }
   }
 });
+
+process.on('uncaughtException', function (err) {
+  logger.fatal({
+    fatal: {
+      name: err.name,
+      message: err.message,
+      stack: err.stack
+    }
+  });
+  process.exit(1);
+});
