@@ -8,7 +8,7 @@
     "setup": "echo 'Creating /csv' && mkdir csv",
     "docker-build": "docker build -t edumate-canvas-sync .",
     "docker-run": "docker run -d --net=rosebank --log-driver=json-file --log-opt max-size=50m --log-opt max-file=4 --restart=on-failure:5 --memory \"250M\" --env-file ~/.env/edumate-canvas-sync_PRODUCTION.env --name edumate-canvas-sync edumate-canvas-sync",
-    "test": "tap-prettify tests/*.js"
+    "test": "tape tests/*.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "dependencies": {
     "async": "1.5.0",
     "bunyan": "1.5.1",
-    "canvas-api": "1.0.3",
+    "canvas-api": "2.0.0",
     "chalk": "1.1.1",
     "csv": "0.4.6",
     "moment": "2.10.6",
@@ -28,7 +28,6 @@
     "rosebank-tally": "1.5.1"
   },
   "devDependencies": {
-    "tap-prettify": "0.0.2",
-    "tape": "4.2.1"
+    "tape": "4.4.0"
   }
 }
