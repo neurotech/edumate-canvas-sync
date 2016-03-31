@@ -1,12 +1,18 @@
 'use strict';
 
+const moment = require('moment');
 const config = require('./config');
 const datasets = require('./datasets');
 const timetable = require('./lib/timetable');
 
+var today = moment().format('DD/MM/YY');
+var now = moment().format('HH:mm:ss');
+
 console.log(`
   ----------------------------
   Starting edumate-canvas-sync
+  Date: ${today}
+  Time: ${now}
   Canvas Domain: ${config.canvas.domain}
   Edumate Connection: ${config.edumate.username}@${config.edumate.host}:${config.edumate.port}/${config.edumate.suffix}
   ----------------------------
