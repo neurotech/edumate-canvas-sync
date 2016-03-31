@@ -1,4 +1,4 @@
-FROM nodesource/jessie:4.2.0
+FROM nodesource/jessie:4.3.2
 MAINTAINER Tim Douglas <neurotech@gmail.com>
 
 # Set timezone
@@ -17,4 +17,5 @@ COPY . .
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /root/.npm /root/.node-gyp
 
 # Run the application
+USER nobody
 CMD [ "node", "app.js" ]
