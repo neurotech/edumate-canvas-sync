@@ -3,6 +3,3 @@ npm-debug.log
 .DS_Store
 *.swp
 *.csv
-cache
-db/*.db
-.env
