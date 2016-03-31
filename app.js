@@ -1,78 +1,39 @@
 'use strict';
 
-var async = require('async');
+const config = require('./config');
+const datasets = require('./datasets');
+const timetable = require('./lib/timetable');
 
-var config = require('./config');
-var datasets = require('./datasets');
-var timetable = require('./lib/timetable');
+console.log(`
+  ----------------------------
+  Starting edumate-canvas-sync
+  Canvas Domain: ${config.canvas.domain}
+  Edumate Connection: ${config.edumate.username}@${config.edumate.host}:${config.edumate.port}/${config.edumate.suffix}
+  ----------------------------
+`);
 
-var logger = config.logger;
+// Iterate over datasets and pass each one to timetable
+for (var key in datasets) {
+  if (datasets.hasOwnProperty(key)) {
+    console.log(`Scheduled Job: ${datasets[key].dataset}`);
 
-async.series([
-  function (callback) {
-    logger.info({
-      operation: 'Startup',
-      detail: {
-        message: 'Starting edumate-canvas-sync'
-      }
-    });
-    setTimeout(function () { callback(null, 'starting'); }, 100);
-  },
-  function (callback) {
-    logger.info({
-      operation: 'Startup',
-      detail: {
-        message: 'Canvas Domain: ' + config.canvas.domain
-      }
-    });
-    setTimeout(function () { callback(null, 'canvas domain'); }, 100);
-  },
-  function (callback) {
-    logger.info({
-      operation: 'Startup',
-      detail: {
-        message: 'Edumate Connection: ' + config.edumate.username + '@' + config.edumate.host + ':' + config.edumate.port + '/' + config.edumate.suffix
-      }
-    });
-    setTimeout(function () { callback(null, 'edumate info'); }, 100);
-  }
-],
-function (err, results) {
-  if (err) {
-    logger.error({
-      error: {
-        name: err.name,
-        message: err.message,
-        stack: err.stack
-      }
-    });
-  }
-  // Iterate over datasets and pass each one to timetable
-  for (var key in datasets) {
-    if (datasets.hasOwnProperty(key)) {
-      logger.info({
-        operation: 'Scheduled Job',
-        detail: {
-          message: datasets[key].dataset
-        }
-      });
-
-      timetable.job(datasets[key])
-        .then(function (results) {}, function (error) {
-          logger.error({
-            error: {
-              name: error.name,
-              message: error.message,
-              stack: error.stack
-            }
-          });
+    timetable.job(datasets[key])
+      .then((results) => {
+        console.log(results);
+      }, (error) => {
+        console.error({
+          error: {
+            name: error.name,
+            message: error.message,
+            stack: error.stack
+          }
         });
-    }
+      });
   }
-});
+}
 
-process.on('uncaughtException', function (err) {
-  logger.fatal({
+process.on('uncaughtException', (err) => {
+  console.error({
     fatal: {
       name: err.name,
       message: err.message,
