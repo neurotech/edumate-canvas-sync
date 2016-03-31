@@ -24,7 +24,7 @@ Variable            | Value
 ### Automatic
 
 ```shell
-git clone https://github.com/neurotech/edumate-canvas-sync && cd edumate-canvas-sync && ./build.sh && ./run.sh
+git clone https://github.com/neurotech/edumate-canvas-sync && cd edumate-canvas-sync && ./build.sh && ./run.sh <NETWORK>
 ```
 
 ### Manual
@@ -51,10 +51,10 @@ Build the docker image defined in `./Dockerfile`.
 
 #### Run
 
-Check for the presence of `<network>` and create it if it doesn't exist, then run the docker container.
+Check for the presence of `<NETWORK>` and create it if it doesn't exist, then run the docker container.
 
 ```shell
-./run.sh <network>
+./run.sh <NETWORK>
 ```
 
 ---
