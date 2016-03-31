@@ -24,7 +24,10 @@ Variable            | Value
 ### Automatic
 
 ```shell
-git clone https://github.com/neurotech/edumate-canvas-sync && cd edumate-canvas-sync && ./build.sh && ./run.sh <NETWORK>
+git clone https://github.com/neurotech/edumate-canvas-sync && \
+  cd edumate-canvas-sync && \
+  ./build.sh && \
+  ./run.sh <NETWORK>
 ```
 
 ### Manual
