@@ -2,7 +2,7 @@
 
 DOCKER_NETWORK=$1
 
-if [[ -n "$DOCKER_NETWORK" ]]; then
+if [ -n "$DOCKER_NETWORK" ]; then
   # Check for existing Docker network and create it if missing.
   if docker network ls | grep -q $DOCKER_NETWORK 2>/dev/null; then
     echo "Docker network: \"$DOCKER_NETWORK\" exists. Continuing."
