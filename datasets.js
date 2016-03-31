@@ -1,9 +1,9 @@
 'use strict';
 
-var schedule = require('node-schedule');
+const schedule = require('node-schedule');
 var datasets = {};
 
-var businessDays = [new schedule.Range(1, 5)];
+const businessDays = [new schedule.Range(1, 5)];
 
 datasets.subAccounts = {
   dataset: 'sub-accounts',
