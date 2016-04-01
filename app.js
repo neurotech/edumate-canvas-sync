@@ -21,11 +21,9 @@ console.log(`
 // Iterate over datasets and pass each one to timetable
 for (var key in datasets) {
   if (datasets.hasOwnProperty(key)) {
-    console.log(`Scheduled Job: ${datasets[key].dataset}`);
-
     timetable.job(datasets[key])
       .then((results) => {
-        console.log(results);
+        console.log(`Scheduled Job: ${datasets[key].dataset}`);
       }, (error) => {
         console.error({
           error: {
