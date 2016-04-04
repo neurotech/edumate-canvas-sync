@@ -22,9 +22,7 @@ console.log(`
 for (var key in datasets) {
   if (datasets.hasOwnProperty(key)) {
     timetable.job(datasets[key])
-      .then((results) => {
-        console.log(`Scheduled Job: ${datasets[key].dataset}`);
-      }, (error) => {
+      .then((results) => {}, (error) => {
         console.error({
           error: {
             name: error.name,
@@ -33,6 +31,7 @@ for (var key in datasets) {
           }
         });
       });
+    console.log(`Scheduled Job: ${datasets[key].dataset}`);
   }
 }
 
