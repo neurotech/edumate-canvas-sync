@@ -12,7 +12,7 @@ COPY package.json package.json
 RUN npm install
 
 COPY . .
-
+RUN chown -R nobody:nobody csv
 # Cleanup
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /root/.npm /root/.node-gyp
 
