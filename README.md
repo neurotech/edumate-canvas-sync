@@ -65,3 +65,11 @@ Check for the presence of `<NETWORK>` and create it if it doesn't exist, then ru
 ## TODO
 
  - Commit SQL statements that formed the VIEWs that `datasets.js` references to repo
+ - Add support for manually running specific datasets on-demand via HTTP request with optional Slack messaging support i.e.
+   1. A request is received: `GET /sync/sub-accounts`
+   - Run the appropriate dataset
+   - Optionally return some sort of status message:
+     - Get ID of the returned SIS Import
+     - Poll `sis_imports/{id}` every `n` seconds
+     - When status = completed, return success
+     - When status = error, return error
