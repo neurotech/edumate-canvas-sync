@@ -73,3 +73,4 @@ Check for the presence of `<NETWORK>` and create it if it doesn't exist, then ru
      - Poll `sis_imports/{id}` every `n` seconds
      - When status = completed, return success
      - When status = error, return error
+  - Add support for logging errors etc to external logging service (`rosebank-logger`?)
