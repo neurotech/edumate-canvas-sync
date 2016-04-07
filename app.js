@@ -23,6 +23,7 @@ for (var key in datasets) {
   if (datasets.hasOwnProperty(key)) {
     timetable.job(datasets[key])
       .then((results) => {
+        console.log(results);
         console.log(`SIS Upload #${results.id} (${results.dataset}) started on ${results.local_date} at ${results.local_time}.`);
       }, (error) => {
         console.error({
