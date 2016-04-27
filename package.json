@@ -16,11 +16,12 @@
   "dependencies": {
     "canvas-api": "2.0.0",
     "csv": "0.4.6",
-    "moment": "2.12.0",
     "node-edumate": "5.0.0",
-    "node-schedule": "1.1.0"
+    "node-schedule": "1.1.0",
+    "rollbar-relay": "2.1.0"
   },
   "devDependencies": {
-    "tape": "4.4.0"
+    "semistandard": "7.0.5",
+    "tape": "4.5.1"
   }
 }
