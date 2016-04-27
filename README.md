@@ -8,17 +8,20 @@
 
 `edumate-canvas-sync` requires Docker version `>= 1.9` as it uses Docker's networking feature: [https://blog.docker.com/2015/11/docker-multi-host-networking-ga/](https://blog.docker.com/2015/11/docker-multi-host-networking-ga/)
 
+`edumate-canvas-sync` uses the `rollbar-relay` to log it's events to [Rollbar](https://rollbar.com/). This module requires the `ROLLBAR_POST_SERVER_ITEM_ACCESS_TOKEN` environment variable to be set. This token is listed in your [Rollbar](https://rollbar.com/) project's settings under *Project Access Tokens*.
+
 #### Environment Variables
 
-Variable            | Value
---------------------|------
-`CANVAS_API_KEY`    | The API key for the user that has SIS Import permission.
-`CANVAS_API_DOMAIN` | Your Canvas URL i.e. `organisation.instructure.com`
-`EDUMATE_HOST`      | Your Edumate hostname i.e. `edumate.organisation.com.au`
-`EDUMATE_PORT`      | DB2 port i.e. `50001`
-`EDUMATE_PATH`      | DB2 suffix i.e. `ORGANISATION`
-`EDUMATE_USERNAME`  | DB2 username
-`EDUMATE_PASSWORD`  | DB2 password
+Variable                                | Value
+----------------------------------------|------
+`CANVAS_API_KEY`                        | The API key for the user that has SIS Import permission.
+`CANVAS_API_DOMAIN`                     | Your Canvas URL i.e. `organisation.instructure.com`
+`EDUMATE_HOST`                          | Your Edumate hostname i.e. `edumate.organisation.com.au`
+`EDUMATE_PORT`                          | DB2 port i.e. `50001`
+`EDUMATE_PATH`                          | DB2 suffix i.e. `ORGANISATION`
+`EDUMATE_USERNAME`                      | DB2 username
+`EDUMATE_PASSWORD`                      | DB2 password
+`ROLLBAR_POST_SERVER_ITEM_ACCESS_TOKEN` | [Rollbar](https://rollbar.com/) project token
 
 
 ### Automatic
@@ -73,4 +76,7 @@ Check for the presence of `<NETWORK>` and create it if it doesn't exist, then ru
      - Poll `sis_imports/{id}` every `n` seconds
      - When status = completed, return success
      - When status = error, return error
-  - Add support for logging errors etc to external logging service (`rosebank-logger`?)
+
+## DONE
+
+  - Added support for logging events to Rollbar.
