@@ -4,6 +4,7 @@ const schedule = require('node-schedule');
 var datasets = {};
 
 const businessDays = [new schedule.Range(1, 5)];
+const everyTwoHours = [new schedule.Range(7, 22, 2)];
 
 datasets.subAccounts = {
   dataset: 'sub-accounts',
@@ -62,6 +63,15 @@ datasets.studentUsers = {
     dayOfWeek: businessDays,
     hour: 10,
     minute: 45
+  }
+};
+
+datasets.parentUsers = {
+  dataset: 'parent-users',
+  sql: 'SELECT * FROM DB2INST1.view_canvas_parent_users',
+  schedule: {
+    hour: everyTwoHours,
+    minute: 30
   }
 };
 
