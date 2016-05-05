@@ -1,5 +1,4 @@
-FROM nodesource/jessie:4.4.1
-MAINTAINER Tim Douglas <neurotech@gmail.com>
+FROM nodesource/jessie:5.11.0
 
 # Set timezone
 RUN echo "Australia/Sydney" > /etc/timezone
