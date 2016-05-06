@@ -67,7 +67,6 @@ Check for the presence of `<NETWORK>` and create it if it doesn't exist, then ru
 
 ## TODO
 
- - Commit SQL statements that formed the VIEWs that `datasets.js` references to repo
  - Add support for manually running specific datasets on-demand via HTTP request with optional Slack messaging support i.e.
    1. A request is received: `GET /sync/sub-accounts`
    - Run the appropriate dataset
@@ -80,3 +79,4 @@ Check for the presence of `<NETWORK>` and create it if it doesn't exist, then ru
 ## DONE
 
   - Added support for logging events to Rollbar.
+  - Commit SQL statements that formed the VIEWs that `datasets.js` references to repo
