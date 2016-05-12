@@ -22,6 +22,7 @@ Variable                                | Value
 `EDUMATE_USERNAME`                      | DB2 username
 `EDUMATE_PASSWORD`                      | DB2 password
 `ROLLBAR_POST_SERVER_ITEM_ACCESS_TOKEN` | [Rollbar](https://rollbar.com/) project token
+`EDUMATE_CANVAS_SYNC_SECRET`            | Secret for encoding JWTs
 
 
 ### Automatic
@@ -67,16 +68,27 @@ Check for the presence of `<NETWORK>` and create it if it doesn't exist, then ru
 
 ## TODO
 
- - Add support for manually running specific datasets on-demand via HTTP request with optional Slack messaging support i.e.
-   1. A request is received: `GET /sync/sub-accounts`
-   - Run the appropriate dataset
-   - Optionally return some sort of status message:
-     - Get ID of the returned SIS Import
-     - Poll `sis_imports/{id}` every `n` seconds
-     - When status = completed, return success
-     - When status = error, return error
-
 ## DONE
 
   - Added support for logging events to Rollbar.
   - Commit SQL statements that formed the VIEWs that `datasets.js` references to repo
+  - Add support for manually running specific datasets on-demand via HTTP request with optional Slack messaging support i.e.:
+
+  `GET /sync/sub-accounts` => `Run the sub-accounts task`
+
+  - Add detail to logging from `request` object, current date time etc.
+  - Refactor routing to be DRY:
+
+ ```
+ if /sync/{path} in datasets[key].dataset then run accordingly, else reply nope
+ ```
+  - Basic Auth
+  - Rate limiting:
+
+ ```
+ rate = 1 per minute
+
+ upon request - check if rate has been met:
+ if yes, return 'error'
+ if no, perform manual sync
+ ```
