@@ -2,6 +2,17 @@
 
 var config = {};
 
+/* hapi settings */
+config.hapi = {
+  port: 31337
+};
+
+/* Rate limiting for manual sync */
+config.rate = {
+  // Limit in seconds:
+  limit: 60 * 5
+};
+
 /* Canvas Credentials */
 config.canvas = {
   key: process.env.CANVAS_API_KEY,
@@ -15,6 +26,11 @@ config.edumate = {
   suffix: process.env.EDUMATE_PATH,
   username: process.env.EDUMATE_USERNAME,
   password: process.env.EDUMATE_PASSWORD
+};
+
+/* Internal Auth Credentials */
+config.auth = {
+  secret: process.env.EDUMATE_CANVAS_SYNC_SECRET
 };
 
 module.exports = config;
