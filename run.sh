@@ -18,6 +18,7 @@ if [ -n "$DOCKER_NETWORK" ]; then
   docker run \
     --name edumate-canvas-sync \
     --net=$DOCKER_NETWORK \
+    -p 31337:31337 \
     --log-driver=json-file \
     --log-opt max-size=50m \
     --log-opt max-file=4 \

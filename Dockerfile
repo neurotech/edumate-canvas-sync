@@ -16,6 +16,5 @@ RUN chown -R nobody:nogroup csv
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /root/.npm /root/.node-gyp
 
 # Run the application
-EXPOSE 31337
 USER nobody
 CMD [ "node", "app.js" ]
