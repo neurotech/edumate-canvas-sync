@@ -65,7 +65,7 @@ current_students AS (
 current_parents AS (
   SELECT *
   FROM DB2INST1.view_parent_user_accounts
-  WHERE status = 'current'
+  WHERE status = 'active'
 ),
 
 staff_enrolments AS (
