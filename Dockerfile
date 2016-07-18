@@ -1,4 +1,4 @@
-FROM nodesource/jessie:5.11.0
+FROM nodesource/jessie:6.2.0
 
 # Set timezone
 RUN echo "Australia/Sydney" > /etc/timezone
