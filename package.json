@@ -21,7 +21,7 @@
     "lodash.findkey": "4.3.0",
     "node-edumate": "5.0.0",
     "node-schedule": "1.1.0",
-    "rollbar-relay": "2.1.0"
+    "rollbar-relay": "2.1.1"
   },
   "devDependencies": {
     "semistandard": "7.0.5",
