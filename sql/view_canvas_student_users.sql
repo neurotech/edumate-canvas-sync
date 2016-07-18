@@ -27,10 +27,10 @@ SELECT * FROM (
     contact.contact_id || '.' || student.student_number || '.' || student.student_id AS "user_id",
     (CASE WHEN sys_user.username IS null THEN LEFT(contact.email_address, LENGTH(contact.email_address) - 25) ELSE sys_user.username END) AS "login_id",
     null AS "password",
-    (CASE WHEN contact.preferred_name IS null THEN contact.firstname ELSE contact.preferred_name END) AS "first_name",
+    REPLACE(COALESCE(contact.preferred_name, contact.firstname), '&#039;', '''') AS "first_name",
     REPLACE(contact.surname, '&#039;', '''') AS "last_name",
-    REPLACE(contact.surname, '&#039;', '''') || ', ' || (CASE WHEN contact.preferred_name IS null THEN contact.firstname ELSE contact.preferred_name END) AS "sortable_name",
-    (CASE WHEN contact.preferred_name IS null THEN contact.firstname ELSE contact.preferred_name END) || ' ' || REPLACE(contact.surname, '&#039;', '''') AS "short_name",
+    REPLACE(contact.surname, '&#039;', '''') || ', ' || REPLACE(COALESCE(contact.preferred_name, contact.firstname), '&#039;', '''') AS "sortable_name",
+    REPLACE(COALESCE(contact.preferred_name, contact.firstname), '&#039;', '''') || ' ' || REPLACE(contact.surname, '&#039;', '''') AS "short_name",
     contact.email_address AS "email",
     'active' AS "status"
   
