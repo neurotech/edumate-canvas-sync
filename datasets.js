@@ -42,7 +42,7 @@ datasets.sections = {
   schedule: {
     dayOfWeek: businessDays,
     hour: 10,
-    minute: 15
+    minute: 5
   }
 };
 
@@ -52,7 +52,7 @@ datasets.staffUsers = {
   schedule: {
     dayOfWeek: businessDays,
     hour: 10,
-    minute: 30
+    minute: 10
   }
 };
 
@@ -62,7 +62,7 @@ datasets.studentUsers = {
   schedule: {
     dayOfWeek: businessDays,
     hour: 10,
-    minute: 45
+    minute: 15
   }
 };
 
@@ -80,8 +80,8 @@ datasets.enrolments = {
   sql: 'SELECT * FROM DB2INST1.view_canvas_enrolments',
   schedule: {
     dayOfWeek: businessDays,
-    hour: 11,
-    minute: 0
+    hour: 10,
+    minute: 20
   }
 };
 
