@@ -72,7 +72,9 @@ active_classes AS (
     AND
     course.course NOT LIKE '%Study Line%'
     AND
-    course.course NOT LIKE '% Study'
+    course.course NOT LIKE '%11 Study%'
+    AND
+    course.course NOT LIKE '%12 Study%'
     AND
     course.course NOT LIKE '%CASPER%'
     AND

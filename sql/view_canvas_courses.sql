@@ -1,6 +1,6 @@
 -- To assign SELECT only access, use this example:
 -- GRANT SELECT ON "DB2INST1"."VIEW_CANVAS_COURSES" TO USER DASHBOARD
- 
+
 CREATE OR REPLACE VIEW DB2INST1.VIEW_CANVAS_COURSES (
   course_id,
   short_name,
@@ -46,7 +46,9 @@ WITH active_courses AS (
     AND
     course NOT LIKE '%Study Line%'
     AND
-    course NOT LIKE '% Study'
+    course NOT LIKE '%11 Study%'
+    AND
+    course NOT LIKE '%12 Study%'
     AND
     course NOT LIKE '%raineeship%'
     AND

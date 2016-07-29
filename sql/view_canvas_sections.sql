@@ -46,7 +46,9 @@ WITH active_classes AS (
     AND
     course NOT LIKE '%Study Line%'
     AND
-    course NOT LIKE '% Study'
+    course NOT LIKE '%11 Study%'
+    AND
+    course NOT LIKE '%12 Study%'
     AND
     course NOT LIKE '%raineeship%'
     AND
