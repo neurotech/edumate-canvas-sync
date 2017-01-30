@@ -9,7 +9,6 @@ CREATE OR REPLACE VIEW DB2INST1.VIEW_CANVAS_TERMS (
   end_date
 ) AS
 
-
 WITH all_terms AS (
   SELECT
     timetable.default_flag,
