@@ -3,6 +3,7 @@
 
 CREATE OR REPLACE VIEW DB2INST1.VIEW_CANVAS_STUDENT_USERS (
   user_id,
+  integration_id,
   login_id,
   password,
   first_name,
@@ -25,6 +26,7 @@ WITH active_students AS (
 SELECT * FROM (
   SELECT
     contact.contact_id || '.' || student.student_number || '.' || student.student_id AS "user_id",
+    student.student_id AS "integration_id",
     (CASE WHEN sys_user.username IS null THEN LEFT(contact.email_address, LENGTH(contact.email_address) - 25) ELSE sys_user.username END) AS "login_id",
     null AS "password",
     REPLACE(COALESCE(contact.preferred_name, contact.firstname), '&#039;', '''') AS "first_name",
