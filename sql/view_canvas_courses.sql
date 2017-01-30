@@ -74,6 +74,21 @@ WITH active_courses AS (
     )
 ),
 
+pastoral_care AS (
+  SELECT
+    TO_CHAR((current date), 'YYYY') || '-PC-YR' || (CASE WHEN form.short_name IN ('7','8','9') THEN '0' || form.short_name ELSE form.short_name END) AS "course_id",
+    'Year ' || form.short_name || ' Pastoral Care' AS "short_name",
+    'Year ' || form.short_name || ' Pastoral Care' AS "long_name",
+    20 AS "account_id",
+    (CASE
+      WHEN form.short_name IN ('7','8','9','10','11') THEN (SELECT term_id FROM DB2INST1.view_canvas_terms WHERE name LIKE '%Year 7%')
+      WHEN form.short_name = '12' THEN (SELECT term_id FROM DB2INST1.view_canvas_terms WHERE name LIKE '%Year 12%')
+    END) AS "term_id",
+    'active' AS "status"
+
+  FROM form
+),
+
 meta_courses AS (
   SELECT
     (CASE WHEN course.meta_course_id IS null THEN active_courses.course_id ELSE course.meta_course_id END) AS COURSE_ID
@@ -85,9 +100,9 @@ meta_courses AS (
 
 combined AS (
   SELECT DISTINCT course_id FROM meta_courses
-)
+),
 
-SELECT * FROM (
+academic_courses AS (
   SELECT
     TO_CHAR((current date), 'YYYY') || '-' || course.code AS "course_id",
     REPLACE(course.course, '&amp;', ' & ') AS "short_name",
@@ -105,6 +120,16 @@ SELECT * FROM (
   INNER JOIN course ON course.course_id = combined.course_id
   INNER JOIN subject ON subject.subject_id = course.subject_id
   INNER JOIN department ON department.department_id = subject.department_id
-  
-  ORDER BY course.sort_order, department.department, course.course
+),
+
+final_report AS (
+  SELECT * FROM pastoral_care
+  UNION ALL
+  SELECT * FROM academic_courses
+)
+
+SELECT * FROM (
+  SELECT *
+  FROM final_report
+  ORDER BY "account_id", "course_id"
 )
