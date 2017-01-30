@@ -228,10 +228,112 @@ non_life_skills AS (
   INNER JOIN student ON student.student_id = combined.student_id
 ),
 
+year_twelve AS (
+  SELECT DISTINCT
+    view_student_class_enrolment.academic_year,
+    view_student_class_enrolment.class_id,
+    view_student_class_enrolment.course_id,
+    course.code,
+    view_student_class_enrolment.student_id,
+    view_student_class_enrolment.end_date
+
+  FROM view_student_class_enrolment
+
+  INNER JOIN course ON course.course_id = view_student_class_enrolment.course_id
+
+  WHERE
+    view_student_class_enrolment.student_id IN (SELECT student_id FROM all_students)
+    AND
+    academic_year_id = (SELECT academic_year_id FROM academic_year WHERE academic_year = YEAR(current date))
+    AND
+    class_type_id IN (1, 9, 1101, 1124)
+    AND
+    course.code LIKE '12%'
+    AND
+    start_date < DATE('10-10-2016')
+    AND
+    end_date >= DATE('09-10-2016')
+),
+
+future_year_twelve AS (
+  SELECT DISTINCT
+    YEAR(current date + 1 YEAR) AS "ACADEMIC_YEAR",
+    view_student_class_enrolment.class_id,
+    view_student_class_enrolment.course_id,
+    course.code,
+    view_student_class_enrolment.student_id,
+    view_student_class_enrolment.end_date
+
+  FROM view_student_class_enrolment
+
+  INNER JOIN course ON course.course_id = view_student_class_enrolment.course_id
+
+  WHERE
+    view_student_class_enrolment.student_id IN (SELECT student_id FROM all_students)
+    AND
+    academic_year_id = (SELECT academic_year_id FROM academic_year WHERE academic_year = YEAR(current date))
+    AND
+    class_type_id IN (1, 9, 1101, 1124)
+    AND
+    course.code LIKE '12%'
+    AND
+    start_date >= DATE('10-10-2016')
+    AND
+    end_date >= (current date)
+),
+
+year_twelve_raw AS (
+  SELECT academic_year, student_id, course_id, null AS "META_COURSE_ID", class_id, 'active' AS "STATUS" FROM year_twelve
+),
+
+future_year_twelve_raw AS (
+  SELECT academic_year, student_id, course_id, null AS "META_COURSE_ID", class_id, 'active' AS "STATUS" FROM future_year_twelve
+),
+
+year_twelve_final AS (
+  SELECT
+    year_twelve_raw.student_id,
+    TO_CHAR(year_twelve_raw.academic_year) || '-' || course.code AS "course_id",
+    null as "root_account",
+    student.contact_id AS "contact_id",
+    student.student_number,
+    'student' AS "role",
+    TO_CHAR(year_twelve_raw.academic_year) || '-' || course.code || class.identifier AS "section_id",
+    year_twelve_raw.status,
+    null AS "associated_user_id"
+
+  FROM year_twelve_raw
+  
+  INNER JOIN course ON course.course_id = year_twelve_raw.course_id
+  INNER JOIN class ON class.class_id = year_twelve_raw.class_id
+  
+  INNER JOIN student ON student.student_id = year_twelve_raw.student_id
+),
+
+future_year_twelve_final AS (
+  SELECT
+    future_year_twelve_raw.student_id,
+    TO_CHAR(future_year_twelve_raw.academic_year) || '-' || course.code AS "course_id",
+    null as "root_account",
+    student.contact_id AS "contact_id",
+    student.student_number,
+    'student' AS "role",
+    TO_CHAR(future_year_twelve_raw.academic_year) || '-' || course.code || class.identifier AS "section_id",
+    future_year_twelve_raw.status,
+    null AS "associated_user_id"
+
+  FROM future_year_twelve_raw
+  
+  INNER JOIN course ON course.course_id = future_year_twelve_raw.course_id
+  INNER JOIN class ON class.class_id = future_year_twelve_raw.class_id
+  
+  INNER JOIN student ON student.student_id = future_year_twelve_raw.student_id
+),
+
 final_combined AS (
   SELECT * FROM life_skills_memberships
   UNION ALL
-  SELECT * FROM non_life_skills  
+  SELECT * FROM non_life_skills
 )
 
 SELECT * FROM (
