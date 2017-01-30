@@ -1,7 +1,4 @@
--- To assign SELECT only access, use this example:
--- GRANT SELECT ON "DB2INST1"."VIEW_CANVAS_ENROLMENTS" TO USER DASHBOARD
-
-/* CREATE OR REPLACE VIEW DB2INST1.VIEW_CANVAS_ENROLMENTS (
+CREATE OR REPLACE VIEW DB2INST1.VIEW_CANVAS_ENROLMENTS (
   course_id,
   root_account,
   user_id,
@@ -9,7 +6,7 @@
   section_id,
   status,
   associated_user_id
-) AS */
+) AS
 
 WITH active AS (
   SELECT * FROM DB2INST1.view_canvas_class_teachers
@@ -34,6 +31,8 @@ SELECT * FROM (
   UNION
   
   SELECT * FROM DB2INST1.view_canvas_evergreen_enrolments
-  
+  UNION
+  SELECT * FROM DB2INST1.view_canvas_life_skills_enrolments
+
   ORDER BY user_id, role DESC, course_id
 )
