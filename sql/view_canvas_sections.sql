@@ -103,6 +103,7 @@ SELECT * FROM (
   INNER JOIN course ON course.course_id = combined.course_id
   LEFT JOIN course meta_course ON meta_course.course_id = combined.meta_course_id
   INNER JOIN class ON class.class_id = combined.class_id
-  
+
   ORDER BY class.class
 )
+
