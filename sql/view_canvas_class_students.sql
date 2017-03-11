@@ -131,7 +131,7 @@ life_skills_students AS (
         WHEN course.code = '09TLS' THEN '09EEN'
         WHEN course.code = '09GELS' THEN '09HGE'
         WHEN course.code = '09HILS' THEN '09IHI'
-        WHEN course.code = '09MALS' THEN '09MM1'
+        WHEN course.code = '09MALS' THEN '09MM2'
         WHEN course.code = '09PELS' THEN '09PPD'
         WHEN course.code = '09DMLS' THEN '09CDM'
         WHEN course.code = '09SCLS' THEN '09SSC'
@@ -350,6 +350,6 @@ SELECT * FROM (
   FROM final_combined
 
   INNER JOIN contact ON contact.contact_id = final_combined.contact_id
-
+  
   ORDER BY contact.surname, UPPER(COALESCE(contact.preferred_name, contact.firstname)), course_id
 )
