@@ -89,6 +89,18 @@ pastoral_care AS (
   FROM form
 ),
 
+stem_course AS (
+  SELECT
+    TO_CHAR((current date), 'YYYY') || '-STEM' AS "course_id",
+    'STEM' AS "short_name",
+    'STEM' AS "long_name",
+    58 AS "account_id",
+    (SELECT term_id FROM DB2INST1.view_canvas_terms WHERE name LIKE '%Year 7%') AS "term_id",
+    'active' AS "status"
+
+  FROM SYSIBM.sysdummy1
+),
+
 meta_courses AS (
   SELECT
     (CASE WHEN course.meta_course_id IS null THEN active_courses.course_id ELSE course.meta_course_id END) AS COURSE_ID
@@ -123,6 +135,8 @@ academic_courses AS (
 ),
 
 final_report AS (
+  SELECT * FROM stem_course
+  UNION ALL
   SELECT * FROM pastoral_care
   UNION ALL
   SELECT * FROM academic_courses
