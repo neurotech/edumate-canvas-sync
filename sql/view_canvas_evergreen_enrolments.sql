@@ -99,8 +99,6 @@ staff_stem_enrolments AS (
     OR
     course_id LIKE TO_CHAR((current date), 'YYYY') || '-08T%'
     OR
-    course_id LIKE TO_CHAR((current date), 'YYYY') || '-08E%'
-    OR
     course_id LIKE TO_CHAR((current date), 'YYYY') || '-08M%'
   )
 ),
