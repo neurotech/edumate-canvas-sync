@@ -5,6 +5,8 @@ var datasets = {};
 
 const businessDays = [new schedule.Range(1, 5)];
 const everyTwoHours = [new schedule.Range(7, 22, 2)];
+const morningAfternoon = [new schedule.Range(4, 11)];
+// TODO: Look into 4AM, 11AM, 4PM
 
 datasets.subAccounts = {
   dataset: 'sub-accounts',
@@ -31,7 +33,7 @@ datasets.courses = {
   sql: 'SELECT * FROM DB2INST1.view_canvas_courses',
   schedule: {
     dayOfWeek: businessDays,
-    hour: 10,
+    hour: morningAfternoon,
     minute: 0
   }
 };
@@ -41,7 +43,7 @@ datasets.sections = {
   sql: 'SELECT * FROM DB2INST1.view_canvas_sections',
   schedule: {
     dayOfWeek: businessDays,
-    hour: 10,
+    hour: morningAfternoon,
     minute: 5
   }
 };
@@ -51,7 +53,7 @@ datasets.staffUsers = {
   sql: 'SELECT * FROM DB2INST1.view_canvas_staff_users',
   schedule: {
     dayOfWeek: businessDays,
-    hour: 10,
+    hour: morningAfternoon,
     minute: 10
   }
 };
@@ -61,7 +63,7 @@ datasets.studentUsers = {
   sql: 'SELECT * FROM DB2INST1.view_canvas_student_users',
   schedule: {
     dayOfWeek: businessDays,
-    hour: 10,
+    hour: morningAfternoon,
     minute: 15
   }
 };
@@ -80,7 +82,7 @@ datasets.enrolments = {
   sql: 'SELECT * FROM DB2INST1.view_canvas_enrolments',
   schedule: {
     dayOfWeek: businessDays,
-    hour: 10,
+    hour: morningAfternoon,
     minute: 20
   }
 };
