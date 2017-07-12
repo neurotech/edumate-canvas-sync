@@ -15,16 +15,16 @@
   "license": "ISC",
   "dependencies": {
     "canvas-api": "2.0.0",
-    "csv": "0.4.6",
-    "hapi": "13.4.0",
-    "hapi-auth-jwt2": "6.0.0",
-    "lodash.findkey": "4.3.0",
+    "csv": "1.1.1",
+    "hapi": "16.4.3",
+    "hapi-auth-jwt2": "7.3.0",
+    "lodash.findkey": "4.6.0",
     "node-edumate": "5.0.0",
-    "node-schedule": "1.1.0",
-    "rollbar-relay": "2.1.1"
+    "node-schedule": "1.2.3",
+    "rollbar-relay": "3.0.0"
   },
   "devDependencies": {
-    "semistandard": "7.0.5",
-    "tape": "4.5.1"
+    "semistandard": "11.0.0",
+    "tape": "4.7.0"
   }
 }
