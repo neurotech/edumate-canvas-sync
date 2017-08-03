@@ -16,6 +16,7 @@
   "dependencies": {
     "canvas-api": "3.3.2",
     "csv": "1.1.1",
+    "dateformat": "^2.0.0",
     "hapi": "16.5.0",
     "hapi-auth-jwt2": "7.3.0",
     "lodash.findkey": "4.6.0",
