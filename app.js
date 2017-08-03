@@ -2,24 +2,25 @@
 
 const relay = require('rollbar-relay');
 const config = require('./config');
+const log = require('./lib/log');
 const datasets = require('./datasets');
 const timetable = require('./lib/timetable');
 const server = require('./lib/hapi');
 
-relay.info(`Starting edumate-canvas-sync | Canvas Domain: ${config.canvas.domain} | Edumate Connection: ${config.edumate.username}@${config.edumate.host}:${config.edumate.port}/${config.edumate.suffix}`);
+relay.info(`Started edumate-canvas-sync | Canvas Domain: ${config.canvas.domain} | Edumate Connection: ${config.edumate.username}@${config.edumate.host}:${config.edumate.port}/${config.edumate.suffix}`);
 
 server.start(() => {
-  var announce = `hapi server up - version: ${server.version}`;
-  relay.info(announce);
+  log(`hapi server up - version: ${server.version}`);
 });
 
-// Iterate over datasets and pass each one to timetable
+// Iterate over the keys in the datasets object
 for (var set in datasets) {
   if (datasets.hasOwnProperty(set)) {
+    // Pass each returned object to ./timetable.js
     timetable.job(datasets[set])
       .then((results) => {}, (error) => {
         relay.error(error);
       });
-    relay.info(`Scheduled Job: ${datasets[set].dataset}`);
+    log(`Scheduled Job: ${datasets[set].dataset}`);
   }
 }
