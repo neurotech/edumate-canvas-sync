@@ -14,17 +14,17 @@
   "author": "Tim Douglas",
   "license": "ISC",
   "dependencies": {
-    "canvas-api": "2.0.0",
+    "canvas-api": "3.3.2",
     "csv": "1.1.1",
-    "hapi": "16.4.3",
+    "hapi": "16.5.0",
     "hapi-auth-jwt2": "7.3.0",
     "lodash.findkey": "4.6.0",
-    "node-edumate": "5.0.0",
+    "node-edumate": "7.1.0",
     "node-schedule": "1.2.3",
-    "rollbar-relay": "3.0.1"
+    "rollbar-relay": "3.0.2"
   },
   "devDependencies": {
     "semistandard": "11.0.0",
-    "tape": "4.7.0"
+    "tape": "4.8.0"
   }
 }
