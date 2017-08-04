@@ -22,12 +22,12 @@ server.start(() => { log(`hapi server up - version: ${server.version}`); });
 // Iterate over the keys in the datasets object
 for (var set in datasets) {
   if (datasets.hasOwnProperty(set)) {
-    timetable.job(datasets[set], (err, results) => {
+    timetable.job(datasets[set], (err) => {
       if (err) {
         log(`Error: ${err}`);
         relay.error(err);
       }
-      log(`Scheduled Job: ${results}`);
+      log(`Scheduled Job: ${datasets[set].dataset}`);
     });
   }
 }
