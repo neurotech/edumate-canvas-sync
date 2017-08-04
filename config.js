@@ -1,5 +1,3 @@
-'use strict';
-
 var config = {};
 
 /* hapi settings */
