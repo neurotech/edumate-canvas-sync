@@ -16,7 +16,7 @@ relay.info(`Started edumate-canvas-sync.`, {
   }
 });
 
-// Log environment-specific information locally
+// Log environment-specific information to console
 log(`Canvas Domain: ${config.canvas.domain}`);
 log(`Edumate Host: ${config.edumate.host}`);
 log(`Edumate Port: ${config.edumate.port}`);
