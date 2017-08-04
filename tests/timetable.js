@@ -1,8 +1,6 @@
-'use strict';
-
-var test = require('tape');
-var schedule = require('node-schedule');
-var timetable = require('../lib/timetable');
+const test = require('tape');
+const schedule = require('node-schedule');
+const timetable = require('../lib/timetable');
 
 var exampleJob = {
   dataset: 'sub-accounts',
@@ -10,22 +8,17 @@ var exampleJob = {
   schedule: { minute: [new schedule.Range(0, 59)] }
 };
 
-test('it should error if config not supplied', function (t) {
+test('it should error if config not supplied', (t) => {
   t.plan(1);
-  timetable.job()
-    .then(function (results) {
-      t.equal(results, null, 'no response');
-    }, function (error) {
-      t.ok(error, 'error because !config');
-    });
+  timetable.job(null, (err, results) => {
+    if (err) { t.ok(err, 'error because !config'); }
+  });
 });
 
-test('it should return `sis import status` object from canvas', function (t) {
+test('it should return `sis import status` object from canvas', (t) => {
   t.plan(1);
-  timetable.job(exampleJob)
-    .then(function (results) {
-      t.equal(typeof results.id, 'number');
-    }, function (error) {
-      t.equal(error, null);
-    });
+  timetable.job(exampleJob, (err, results) => {
+    if (err) { t.equal(err, null); }
+    t.equal(typeof results.id, 'number');
+  });
 });

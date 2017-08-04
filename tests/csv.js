@@ -1,7 +1,5 @@
-'use strict';
-
-var test = require('tape');
-var csv = require('../lib/csv');
+const test = require('tape');
+const csv = require('../lib/csv');
 
 var sampleResults = [
   {
@@ -84,12 +82,10 @@ var sampleResults = [
   }
 ];
 
-test('it should write the results to csv', function (t) {
+test('it should write the results to csv', (t) => {
   t.plan(1);
-  csv.make('sub-accounts', sampleResults)
-    .then(function (results) {
-      t.equal(typeof results.path, 'string', 'wrote to csv');
-    }, function (error) {
-      t.equal(error, null);
-    });
+  csv.make('sub-accounts', sampleResults, (err, results) => {
+    if (err) { t.equal(err, null); }
+    t.equal(typeof results.path, 'string', 'wrote to csv');
+  });
 });
