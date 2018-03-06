@@ -17,7 +17,7 @@
     "canvas-api": "3.5.0",
     "csv": "2.0.0",
     "dateformat": "3.0.2",
-    "hapi": "16.6.2",
+    "hapi": "17.0.0",
     "hapi-auth-jwt2": "7.3.0",
     "lodash.findkey": "4.6.0",
     "node-edumate": "7.1.0",
